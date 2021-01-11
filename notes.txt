@@ -1,0 +1,25 @@
+body: h-650
+container: 1200 x 600
+obstacle: w-40 (6.66666667%)
+character: w-80 (13.33333333%)
+character: h-40 (6.66666667%)
+container h w/o character: 560
+5 displacements: 112
+displacement % : 20%
+
+heightList: { //out of 600
+    0% | 87.5%
+    87.5% | 0%
+    16.66666667% | 73.33333333%
+    71.66666667% | 16.66666667%
+    35% | 52.5%
+    53.33333333% | 35%
+    35% | 52.5%
+    52.5% | 35%
+}
+
+
+lose:
+
+    w - 1200
+    obPos > 1060

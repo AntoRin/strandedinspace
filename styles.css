@@ -1,0 +1,133 @@
+body{
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* width: 100%; */
+    min-height: 100vh;
+}
+
+.container{
+    background-image: url(Starry-Sky-Background-WallpaperTag.jpg);
+    position: relative;
+    /* margin-top: 50px; */
+    /* width: 1200px;
+    height: 600px; */
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.character{
+    position: relative;
+    /* left: 60px; */
+    top: 0;
+    width: auto; 
+    height: auto;
+    overflow: hidden;
+    /* display: none; */
+    visibility: hidden;
+}
+
+.obstacleBottom{
+    width: 40px;
+    height: 85%;
+    background-color: crimson;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: none;
+}
+
+.obstacleTop{
+    width: 40px;
+    height: 0;
+    /* border: 2px solid red; */
+    background-color: crimson;
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: none;
+}
+
+@keyframes obstacleMotion{
+    0% {right: 0;}
+    25% {right: 25%}
+    50% {right: 50%}
+    75% {right: 75%;}
+    100% {right: 100%;}
+}
+
+.animate{
+    animation: obstacleMotion 1s infinite linear;
+}
+
+.score{
+    position: absolute;
+    right: 50px;
+    top: 0;
+    height: 30px;
+    color: white;
+}
+
+.highScore{
+    position: absolute;
+    right: 50px;
+    top: 40px;
+    height: 30px;
+    color: white;
+}
+
+.newGame{
+    position: absolute;
+    width: 100px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    
+}
+
+.newGame button{
+    background: transparent;
+    color: white;
+    font-size: 1.5rem;
+}
+
+
+.touchButtons{
+    position: absolute;
+    right: 10%;
+    bottom: 10%;
+    /* width: 200px; */
+    overflow: hidden;
+    display: none;
+}
+
+.upArrow{
+    margin: 40px auto;
+}
+
+
+.downArrow{
+    margin: 40px auto;
+}
+
+.upArrow img{
+    width: 50px;
+    /* border-radius: 500px; */
+}
+
+.downArrow img{
+    width: 50px;
+    /* border-radius: 500px; */
+}
+
+
+
+@media (max-width: 800px)
+{
+    .touchButtons{
+        display: block;
+    }
+}
