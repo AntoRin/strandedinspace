@@ -120,6 +120,7 @@ body{
 
 .downArrow img{
     width: 50px;
+    transform: rotate(180deg);
     /* border-radius: 500px; */
 }
 

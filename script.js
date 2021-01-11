@@ -1,12 +1,8 @@
 var htmlHeight = document.documentElement.offsetHeight;
-// console.log(htmlHeight);
 var container = document.querySelector(".container");
 var containerHeight = container.offsetHeight;
-// console.log(container.offsetHeight);
-
 
 window.onresize = ()=> {location.reload();}
-
 
 // CHARACTER MOVEMENT
 var character = document.querySelector(".character");
