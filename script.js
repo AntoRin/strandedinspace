@@ -104,7 +104,7 @@ start.onclick = ()=>{
     character.style.display = "block";
     obstacleBottom.style.display = "block";
     obstacleTop.style.display = "block";
-    game = setInterval(changeHeight, 1000);
+    game = setInterval(changeHeight, 2000);
     checkDefeat = setInterval(checkStatus, 10);
     obstacleTop.classList.add("animate");
     obstacleBottom.classList.add("animate");
