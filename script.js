@@ -102,6 +102,7 @@ var start = document.getElementById("start");
 var game; // setInterval(changeHeight, 1000);
 var checkDefeat; // setInterval(checkStatus, 10);
 start.onclick = ()=>{
+    // document.documentElement.requestFullscreen();
     if(getComputedStyle(character).getPropertyValue("visibility") === "hidden")
     {
         character.style.visibility = "visible";
@@ -136,7 +137,7 @@ function checkStatus(){
         var charRightWidth = charContainerWidth - characterImg.offsetWidth;
         if(obPos < charContainerWidth && obPos > charRightWidth)
         {
-            console.log(character.offsetTop);
+            // console.log(character.offsetTop);
             clearInterval(game);
             clearInterval(checkDefeat);
             alert("Defeat");
