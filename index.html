@@ -9,32 +9,33 @@
     </head>
 
     <body>
-        <div class="container">
-            <div class="character">
-                <img src="creative-market-preview0-.jpg" alt="">
+        <div class="container-wrapper">
+            <div class="container">
+                <div class="character">
+                    <img src="creative-market-preview0-.jpg" alt="">
+                </div>
+                <div class="obstacleBottom"></div>
+                <div class="obstacleTop"></div>
+                <div class="score">
+                    Score: <span class="getScore"></span>
+                </div>
+                <div class="highScore">
+                    High Score:  <span class="getHighScore"></span>
+                </div>
+                <div class="newGame">
+                    <button type="button" id="start">NEW GAME</button>
+                </div>
             </div>
-            <div class="obstacleBottom"></div>
-            <div class="obstacleTop"></div>
-            <div class="score">
-                Score: <span class="getScore"></span>
-            </div>
-            <div class="highScore">
-                High Score:  <span class="getHighScore"></span>
-            </div>
-            <div class="newGame">
-                <button type="button" id="start">NEW GAME</button>
+            
+            <div class="touchButtons">
+                <div class="upArrow">
+                    <button id="up" type="button"> <img src="download.png" alt=""> </button>
+                </div>
+                <div class="downArrow">
+                    <button id="down" type="button"> <img src="download.png" alt=""> </button>
+                </div>
             </div>
         </div>
-        
-        <div class="touchButtons">
-            <div class="upArrow">
-                <button id="up" type="button"> <img src="download.png" alt=""> </button>
-            </div>
-            <div class="downArrow">
-                <button id="down" type="button"> <img src="download.png" alt=""> </button>
-            </div>
-        </div>
-
         <script src="script.js"></script>
     </body>
 </html>
