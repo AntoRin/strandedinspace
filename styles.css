@@ -63,7 +63,7 @@ body{
 }
 
 .animate{
-    animation: obstacleMotion 2s infinite linear;
+    animation: obstacleMotion 1s infinite linear;
 }
 
 .score{
