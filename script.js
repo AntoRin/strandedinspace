@@ -10,12 +10,9 @@ var characterImg = document.querySelector(".character img");
 character.style.left = 5 + "%";
 characterImg.style.height = (6.66666667 / 100) * containerHeight + "px";
 characterImg.style.width = "auto";
-// console.log(getComputedStyle(character).getPropertyValue("left"));
-// console.log(getComputedStyle(character).getPropertyValue("width"));
 // console.log(getComputedStyle(character).getPropertyValue("height"));
-var displacement = (container.offsetHeight - characterImg.offsetHeight) / 5;
-// console.log(characterImg.offsetHeight);
-// console.log(displacement);
+var displacement = (container.offsetHeight - character.offsetHeight) / 5;
+console.log(displacement);
 // console.log(container.offsetHeight);
 // console.log(characterImg.offsetHeight);
 
@@ -30,9 +27,9 @@ function moveCharacter(event)
 {
     if(event.keyCode == 38 || this.id == "up"){
         var topPos = character.offsetTop;
-        
+        console.log(topPos);
         var posRefTop = topPos;
-        if(topPos > 1)
+        if(topPos > 0)
         {
             posRefTop -= displacement;
             if(posRefTop >= 0)
@@ -42,7 +39,7 @@ function moveCharacter(event)
     }   
      if(event.keyCode == 40 || this.id == "down"){
         var bottomPos = character.offsetTop;
-        console.log(bottomPos);
+        // console.log(bottomPos);
         var posRefBottom = bottomPos;
         
          if((posRefBottom + displacement) <= container.offsetHeight)
@@ -50,7 +47,6 @@ function moveCharacter(event)
             posRefBottom += displacement;
              character.style.top = posRefBottom + "px";
          }
-        //  console.log(bottomPos);
      }
 }
 // CHARACTER MOVEMENT
@@ -65,7 +61,16 @@ var obstacleTop = document.querySelector(".obstacleTop");
 // obstacleBottom.style.height = 80 + "%";
 // var heightList = [[0,525],[525,0],[100,440],[430,100],[210,315],[320,210],[210,315],[315,210]];
 
-var heightList = [[0,((87.5/100)*containerHeight)], [((87.5/100)*containerHeight),0], [((16.66666667/100)*containerHeight),((73.33333333/100)*containerHeight)], [((71.66666667/100)*containerHeight),((16.66666667/100)*containerHeight)], [((35/100)*containerHeight),((52.5/100)*containerHeight)], [((53.33333333/100)*containerHeight), ((35/100)*containerHeight)], [((35/100)*containerHeight), ((52.5/100)*containerHeight)], [((52.5/100)*containerHeight), ((35/100)*containerHeight)]];
+var heightList = [
+    [0,((87.5/100)*containerHeight)], 
+    [((87.5/100)*containerHeight),0], 
+    [((16.66666667/100)*containerHeight),((73.33333333/100)*containerHeight)], 
+    [((71.66666667/100)*containerHeight),((16.66666667/100)*containerHeight)], 
+    [((35/100)*containerHeight),((52.5/100)*containerHeight)], 
+    [((53.33333333/100)*containerHeight), ((35/100)*containerHeight)], 
+    [((35/100)*containerHeight), ((52.5/100)*containerHeight)], 
+    [((52.5/100)*containerHeight), ((35/100)*containerHeight)]
+];
 // console.log(heightList);
 var listLength = heightList.length;
 var score = 0;
