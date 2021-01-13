@@ -3,6 +3,14 @@ var container = document.querySelector(".container");
 var containerHeight = container.offsetHeight;
 
 window.onresize = ()=> {location.reload();}
+var touchButtons = document.querySelector(".touchButtons");
+window.onload = ()=> {
+    if(getComputedStyle(touchButtons).getPropertyValue("display") === "block")
+    {
+        touchButtons.style.visibility = "hidden";
+    }
+}
+
 
 
 
@@ -17,6 +25,8 @@ var displacement = (container.offsetHeight - character.offsetHeight) / 5;
 // console.log(displacement);
 var upBtn = document.getElementById("up");
 var downBtn = document.getElementById("down");
+
+
 upBtn.addEventListener("click", moveCharacter);
 downBtn.addEventListener("click", moveCharacter);
 window.addEventListener("keydown", moveCharacter);
@@ -123,6 +133,10 @@ start.onclick = ()=>{
     {
         character.style.visibility = "visible";
     }
+    if(touchButtons.style.visibility === "hidden")
+    {
+        touchButtons.style.visibility = "visible";
+    }
     character.style.display = "block";
     obstacleBottom.style.display = "block";
     obstacleTop.style.display = "block";
@@ -166,6 +180,10 @@ function checkStatus(){
             obstacleBottom.style.display = "none";
             obstacleTop.style.display = "none";
             character.style.top = 0;
+            if(touchButtons.style.visibility === "visible")
+            {
+                touchButtons.style.visibility = "hidden";
+            }
         }
     }
 }

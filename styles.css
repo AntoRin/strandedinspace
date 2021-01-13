@@ -131,9 +131,9 @@ body{
 }
 
 .optionsMenu{
-    height: 50%;
-    width: 25%;
-    background: white;
+    /* height: 50%; */
+    width: 50%;
+    background: black;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -141,6 +141,10 @@ body{
     display: none;
 }
 
+.optionTitle{
+    text-align: center;
+    color: white;
+}
 .backBtn{
     position: absolute;
     bottom: 5%;
@@ -149,9 +153,12 @@ body{
 }
 .maps{
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     position: relative;
     top: 20%;
+    margin: 5% auto;
+    color: white;
 }
 
 .map img{
@@ -167,9 +174,25 @@ body{
     text-decoration: none;
     cursor: pointer;
 }
+
 @media (max-width: 800px)
 {
     .touchButtons{
         display: block;
+    }
+
+    .map{
+        transform: scale(0.8);
+    }
+}
+
+@media (max-width: 700px)
+{
+    .map{
+        transform: scale(0.6);
+    }
+
+    .newGame button{
+        font-size: 1.2rem;
     }
 }
