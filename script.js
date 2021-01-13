@@ -4,6 +4,8 @@ var containerHeight = container.offsetHeight;
 
 window.onresize = ()=> {location.reload();}
 
+
+
 // CHARACTER MOVEMENT
 var character = document.querySelector(".character");
 var characterImg = document.querySelector(".character img");
@@ -12,13 +14,9 @@ characterImg.style.height = (6.66666667 / 100) * containerHeight + "px";
 characterImg.style.width = "auto";
 // console.log(getComputedStyle(character).getPropertyValue("height"));
 var displacement = (container.offsetHeight - character.offsetHeight) / 5;
-console.log(displacement);
-// console.log(container.offsetHeight);
-// console.log(characterImg.offsetHeight);
-
+// console.log(displacement);
 var upBtn = document.getElementById("up");
 var downBtn = document.getElementById("down");
-
 upBtn.addEventListener("click", moveCharacter);
 downBtn.addEventListener("click", moveCharacter);
 window.addEventListener("keydown", moveCharacter);
@@ -49,7 +47,7 @@ function moveCharacter(event)
          }
      }
 }
-// CHARACTER MOVEMENT
+// xCHARACTER MOVEMENT
 
 
 
@@ -57,9 +55,6 @@ function moveCharacter(event)
 // OBSTACLES 
 var obstacleBottom = document.querySelector(".obstacleBottom");
 var obstacleTop = document.querySelector(".obstacleTop");
-// obstacleTop.style.height = 0 + "%";
-// obstacleBottom.style.height = 80 + "%";
-// var heightList = [[0,525],[525,0],[100,440],[430,100],[210,315],[320,210],[210,315],[315,210]];
 
 var heightList = [
     [0,((87.5/100)*containerHeight)], 
@@ -71,7 +66,7 @@ var heightList = [
     [((35/100)*containerHeight), ((52.5/100)*containerHeight)], 
     [((52.5/100)*containerHeight), ((35/100)*containerHeight)]
 ];
-// console.log(heightList);
+
 var listLength = heightList.length;
 var score = 0;
 var highscore = 0;
@@ -80,8 +75,6 @@ function changeHeight()
 {
 
     var random = Math.floor(Math.random() * 8 + 0);
-    // console.log(random);
-
     obstacleBottom.style.height = heightList[random][0]  + "px";
     obstacleTop.style.height = heightList[random][1]  + "px";
 
@@ -92,15 +85,38 @@ function changeHeight()
     document.querySelector(".getScore").innerHTML = score;
     document.querySelector(".getHighScore").innerHTML = highscore;
 }
-// OBSTACLES 
+// xOBSTACLES 
 
 
+//OPTIONS
+var optionsBtn = document.getElementById("options");
+var options = document.querySelector(".optionsMenu");
+var back = document.getElementById("back");
+back.onclick = () => {
+    options.style.display = "none";
+}
+optionsBtn.onclick = () => {
+    options.style.display = "block";
+}
+
+var map1 = document.getElementById("map1");
+var map2 = document.getElementById("map2");
+
+map1.onclick = (btn) => {
+    var imageSource = document.getElementById("map1Image").src;
+    container.style.backgroundImage = `url(${imageSource})`;
+}
+map2.onclick = (btn) => {
+    var imageSource = document.getElementById("map2Image").src;
+    container.style.backgroundImage = `url(${imageSource})`;
+}
+//xOPTIONS
 
 
 // START GAME 
 var start = document.getElementById("start");
-var game; // setInterval(changeHeight, 1000);
-var checkDefeat; // setInterval(checkStatus, 10);
+var game; 
+var checkDefeat; 
 start.onclick = ()=>{
     // document.documentElement.requestFullscreen();
     if(getComputedStyle(character).getPropertyValue("visibility") === "hidden")
@@ -115,8 +131,9 @@ start.onclick = ()=>{
     obstacleTop.classList.add("animate");
     obstacleBottom.classList.add("animate");
     start.style.display = "none";
+    optionsBtn.style.display = "none";
 }
-// START GAME 
+// xSTART GAME 
 
 
 
@@ -127,7 +144,6 @@ function checkStatus(){
 
     if(character.offsetTop < obstacleTop.offsetHeight || character.offsetTop > (obstacleTop.offsetHeight + characterImg.offsetHeight))
     {
-        
         // console.log("char :", character.offsetTop);
         // console.log("ob height: ", obstacleTop.offsetHeight);
         // console.log("obheight + 100: ", obstacleTop.offsetHeight + 100);
@@ -137,7 +153,6 @@ function checkStatus(){
         var charRightWidth = charContainerWidth - characterImg.offsetWidth;
         if(obPos < charContainerWidth && obPos > charRightWidth)
         {
-            // console.log(character.offsetTop);
             clearInterval(game);
             clearInterval(checkDefeat);
             alert("Defeat");
@@ -146,6 +161,7 @@ function checkStatus(){
             obstacleTop.classList.remove("animate");
             obstacleBottom.classList.remove("animate");
             start.style.display = "block";
+            optionsBtn.style.display = "block";
             character.style.display = "none";
             obstacleBottom.style.display = "none";
             obstacleTop.style.display = "none";
@@ -153,4 +169,4 @@ function checkStatus(){
         }
     }
 }
-// END GAME 
+// xEND GAME 
