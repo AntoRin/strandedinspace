@@ -20,8 +20,7 @@ var characterImg = document.querySelector(".character img");
 character.style.left = 5 + "%";
 characterImg.style.height = (6.66666667 / 100) * containerHeight + "px";
 characterImg.style.width = "auto";
-// console.log(getComputedStyle(character).getPropertyValue("height"));
-var displacement = (container.offsetHeight - character.offsetHeight) / 5;
+var displacement = Math.floor((container.offsetHeight - character.offsetHeight) / 5);
 // console.log(displacement);
 var upBtn = document.getElementById("up");
 var downBtn = document.getElementById("down");
@@ -35,7 +34,7 @@ function moveCharacter(event)
 {
     if(event.keyCode == 38 || this.id == "up"){
         var topPos = character.offsetTop;
-        console.log(topPos);
+        // console.log(topPos);
         var posRefTop = topPos;
         if(topPos > 0)
         {
@@ -47,7 +46,6 @@ function moveCharacter(event)
     }   
      if(event.keyCode == 40 || this.id == "down"){
         var bottomPos = character.offsetTop;
-        // console.log(bottomPos);
         var posRefBottom = bottomPos;
         
          if((posRefBottom + displacement) <= container.offsetHeight)
@@ -69,7 +67,7 @@ var obstacleTop = document.querySelector(".obstacleTop");
 var heightList = [
     [0,((87.5/100)*containerHeight)], 
     [((87.5/100)*containerHeight),0], 
-    [((16.66666667/100)*containerHeight),((73.33333333/100)*containerHeight)], 
+    [((16.66666667/100)*containerHeight),((71.33333333/100)*containerHeight)], 
     [((71.66666667/100)*containerHeight),((16.66666667/100)*containerHeight)], 
     [((35/100)*containerHeight),((52.5/100)*containerHeight)], 
     [((53.33333333/100)*containerHeight), ((35/100)*containerHeight)], 
@@ -80,20 +78,58 @@ var heightList = [
 var listLength = heightList.length;
 var score = 0;
 var highscore = 0;
+if(localStorage.getItem("highscore")){
+    highscore = localStorage.getItem("highscore");
+}
+else
+    localStorage.setItem("highscore", 0);
+
+document.querySelector(".getScore").innerHTML = score;
+document.querySelector(".getHighScore").innerHTML = localStorage.getItem("highscore");
 
 function changeHeight()
 {
 
     var random = Math.floor(Math.random() * 8 + 0);
+    // console.log(random);
     obstacleBottom.style.height = heightList[random][0]  + "px";
     obstacleTop.style.height = heightList[random][1]  + "px";
 
     score++;
-    if(score > highscore)
+    if(score > highscore){
         highscore = score;
+        localStorage.setItem("highscore", highscore);
+    }
     
     document.querySelector(".getScore").innerHTML = score;
-    document.querySelector(".getHighScore").innerHTML = highscore;
+    document.querySelector(".getHighScore").innerHTML = localStorage.getItem("highscore");
+
+    if(score > 5)
+    {
+        
+        clearInterval(game);
+        game = setInterval(changeHeight, 1500);
+        obstacleTop.classList.remove("animate");
+        obstacleBottom.classList.remove("animate");
+        obstacleBottom.classList.add("animateMedium");
+        obstacleTop.classList.add("animateMedium");
+
+    }
+
+    // if(score > 6)
+    // {
+        
+    //     setTimeout(() => {
+    //         console.log("waiting");
+    //         clearInterval(game);
+    //         obstacleTop.classList.remove("animateMedium");
+    //         obstacleBottom.classList.remove("animateMedium");
+    //         obstacleBottom.classList.add("animateFast");
+    //         obstacleTop.classList.add("animateFast");
+    //         game = setInterval(changeHeight, 1000);
+            
+    //     },500)
+    // }
 }
 // xOBSTACLES 
 
@@ -158,10 +194,6 @@ function checkStatus(){
 
     if(character.offsetTop < obstacleTop.offsetHeight || character.offsetTop > (obstacleTop.offsetHeight + characterImg.offsetHeight))
     {
-        // console.log("char :", character.offsetTop);
-        // console.log("ob height: ", obstacleTop.offsetHeight);
-        // console.log("obheight + 100: ", obstacleTop.offsetHeight + 100);
-        // console.log(obstacleTop.offsetRight);
         var obPos = parseInt(window.getComputedStyle(obstacleTop).getPropertyValue("right"));
         var charContainerWidth = character.offsetWidth - ((5/100) * container.offsetWidth);
         var charRightWidth = charContainerWidth - characterImg.offsetWidth;
@@ -174,6 +206,10 @@ function checkStatus(){
             document.querySelector(".getScore").innerHTML = score;
             obstacleTop.classList.remove("animate");
             obstacleBottom.classList.remove("animate");
+            obstacleTop.classList.remove("animateMedium");
+            obstacleBottom.classList.remove("animateMedium");
+            // obstacleTop.classList.remove("animateFast");
+            // obstacleBottom.classList.remove("animateFast");
             start.style.display = "block";
             optionsBtn.style.display = "block";
             character.style.display = "none";
